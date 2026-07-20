@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mein Weg im Motorsport</title>
+<meta name="description" content="Fabian Kozma – Werdegang zwischen DHL-Logistik und Motorsport (Formula Student greenBEAR)">
+<style>
+  /* Farb- und Schriftwerte aus dem DPDHL-Office-Theme (clrScheme "DHL" / fontScheme "Delivery") */
+  :root {
+    --gelb: #FFCC00;      /* accent3 – Postgelb */
+    --rot: #D40511;       /* accent4 – DHL-Rot */
+    --rot-dunkel: #b00410;
+    --schwarz: #000000;   /* dk1 – Textfarbe */
+    --weiss: #ffffff;     /* lt1 – Grundfläche */
+    --grau-66: #666666;   /* accent2 – Sekundärtext */
+    --grau-8c: #8C8C8C;   /* accent1 */
+    --grau-b2: #B2B2B2;   /* dk2 – Linien */
+    --grau-e5: #E5E5E5;   /* lt2 */
+    --grau-f2: #F2F2F2;   /* accent6 – Flächen */
+    --font: "Delivery", "Delivery W01", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background: var(--weiss);
+    color: var(--schwarz);
+    line-height: 1.1; /* Titel-Basis; Fließtext setzt 1.65 */
+  }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+  h1, h2, h3 { text-wrap: balance; margin: 0; font-style: normal; }
+  p { line-height: 1.65; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--schwarz);
+    outline-offset: 3px;
+  }
+
+  /* Kopfleiste – Postgelb wie der DPDHL-Webauftritt */
+  .topbar {
+    background: var(--gelb);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .topbar .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .marke {
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    color: var(--schwarz);
+  }
+  .topnav { display: flex; gap: 28px; }
+  .topnav a {
+    color: var(--schwarz);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .topnav a:hover { color: var(--rot); }
+  @media (max-width: 640px) { .topnav { display: none; } }
+
+  /* Hero – weiße Fläche, schwarze fette Delivery-Titel */
+  .hero { position: relative; overflow: hidden; }
+  .hero .wrap {
+    position: relative;
+    padding-top: 88px;
+    padding-bottom: 96px;
+  }
+
+  /* Speedlines – gestrichelte Linien wie im DHL-Logo, laufen nach links */
+  .speedlines {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 55%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .speedlines span {
+    position: absolute;
+    right: -80px;
+    height: 12px;
+    transform: skewY(-7deg);
+    animation: einfahren 0.9s cubic-bezier(0.16, 1, 0.3, 1) both,
+               rasen 2.4s linear infinite;
+  }
+  .speedlines span:nth-child(1) {
+    top: 64px; width: 92%;
+    background: repeating-linear-gradient(90deg, var(--rot) 0 44px, transparent 44px 72px);
+  }
+  .speedlines span:nth-child(2) {
+    top: 102px; width: 68%;
+    background: repeating-linear-gradient(90deg, var(--gelb) 0 44px, transparent 44px 72px);
+    animation-delay: 0.12s, 0s;
+    animation-duration: 0.9s, 3s;
+  }
+  .speedlines span:nth-child(3) {
+    top: 140px; width: 44%;
+    background: repeating-linear-gradient(90deg, var(--rot) 0 44px, transparent 44px 72px);
+    animation-delay: 0.24s, 0s;
+    animation-duration: 0.9s, 3.6s;
+  }
+  @keyframes einfahren {
+    from { transform: translateX(55%) skewY(-7deg); opacity: 0; }
+    to   { transform: translateX(0) skewY(-7deg); opacity: 1; }
+  }
+  @keyframes rasen {
+    to { background-position: -144px 0; }
+  }
+  @media (max-width: 760px) { .speedlines { display: none; } }
+
+  /* Laufendes Postgelb-Band mit roten Streifen */
+  .laufband {
+    height: 10px;
+    background: repeating-linear-gradient(-45deg, var(--gelb) 0 24px, var(--rot) 24px 32px);
+    background-size: 45.25px 10px;
+    animation: band 1.6s linear infinite;
+  }
+  @keyframes band {
+    to { background-position: 45.25px 0; }
+  }
+  .eyebrow {
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--grau-66);
+    margin: 0 0 20px;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  .hero h1 .rot { color: var(--rot); }
+  .hero .marker {
+    background: linear-gradient(transparent 62%, var(--gelb) 62%);
+  }
+  .hero p.intro {
+    max-width: 34rem;
+    font-size: 1.1rem;
+    color: var(--schwarz);
+    margin: 0 0 36px;
+  }
+  .cta-reihe { display: flex; flex-wrap: wrap; gap: 16px; }
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .btn-rot { background: var(--rot); color: var(--weiss); }
+  .btn-rot:hover { background: var(--rot-dunkel); }
+  .btn-gelb { background: var(--gelb); color: var(--schwarz); }
+  .btn-gelb:hover { background: #e6b800; }
+
+  /* Sektionen */
+  section .wrap { padding-top: 80px; padding-bottom: 80px; }
+  .s-titel {
+    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 10px;
+  }
+  .s-titel::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 6px;
+    background: var(--gelb);
+    margin-top: 14px;
+  }
+  .s-sub { color: var(--grau-66); margin: 0 0 48px; max-width: 42rem; }
+
+  /* Stationen */
+  .station {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 32px;
+    border-left: 3px solid var(--grau-e5);
+    padding-left: 28px;
+    position: relative;
+  }
+  .station + .station { margin-top: 56px; }
+  .station::before {
+    content: "";
+    position: absolute;
+    left: -9.5px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--rot);
+  }
+  .station .zeit {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--rot);
+  }
+  .station h3 { font-size: 1.45rem; font-weight: 700; letter-spacing: -0.01em; }
+  .station .rolle {
+    font-weight: 700;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--grau-8c);
+    margin: 4px 0 14px;
+  }
+  .station p.text { color: var(--schwarz); margin: 0 0 18px; max-width: 40rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .tags li {
+    background: var(--gelb);
+    color: var(--schwarz);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 6px 12px;
+  }
+  @media (max-width: 640px) {
+    .station { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* Formula Student – graue Fläche aus der Theme-Palette */
+  .fs { background: var(--grau-f2); }
+  .fs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .fs-card {
+    background: var(--weiss);
+    border-top: 6px solid var(--gelb);
+    padding: 24px 24px 28px;
+  }
+  .fs-card .zahl {
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--rot);
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+  }
+  .fs-card .label {
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 14px 0 8px;
+  }
+  .fs-card p.text { color: var(--grau-66); font-size: 0.92rem; margin: 0; }
+  @media (max-width: 640px) { .fs-grid { grid-template-columns: 1fr; } }
+
+  /* Netzwerk */
+  .netz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .netz-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--grau-e5);
+  }
+  .netz-card .foto {
+    aspect-ratio: 16 / 10;
+    background: var(--grau-f2);
+    border-bottom: 4px solid var(--gelb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grau-8c);
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .netz-card .foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .netz-card .inhalt { padding: 22px 24px 26px; }
+  .netz-card .serie {
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--rot);
+    margin: 0 0 6px;
+  }
+  .netz-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+  .netz-card p.text { color: var(--grau-66); font-size: 0.92rem; margin: 0; }
+  @media (max-width: 760px) { .netz-grid { grid-template-columns: 1fr; } }
+
+  /* Werte */
+  #werte { background: var(--grau-f2); }
+  .werte-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .wert {
+    background: var(--weiss);
+    border-left: 6px solid var(--gelb);
+    padding: 26px 28px;
+  }
+  .wert h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+  .wert p { color: var(--grau-66); margin: 0; }
+  @media (max-width: 640px) { .werte-grid { grid-template-columns: 1fr; } }
+
+  /* Smart Connect Links */
+  .connect { background: var(--weiss); border-top: 1px solid var(--grau-e5); }
+  .connect .wrap { padding-top: 64px; padding-bottom: 64px; }
+  .connect-titel {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 10px;
+  }
+  .connect-titel::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 6px;
+    background: var(--gelb);
+    margin-top: 14px;
+  }
+  .connect-sub { color: var(--grau-66); margin: 0 0 36px; max-width: 42rem; }
+  .connect-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .connect-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: var(--grau-f2);
+    border-left: 4px solid var(--rot);
+    padding: 24px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .connect-link:hover {
+    background: #e8e8e8;
+    border-left-color: var(--rot-dunkel);
+  }
+  .connect-link-label {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--rot);
+    margin-bottom: 8px;
+  }
+  .connect-link-text {
+    color: var(--schwarz);
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+  .connect-link-hint {
+    color: var(--grau-66);
+    font-size: 0.8rem;
+    margin-top: 6px;
+  }
+  @media (max-width: 760px) { .connect-links { grid-template-columns: 1fr; } }
+
+  /* Footer – DHL-Rot */
+  footer { background: var(--rot); color: var(--weiss); }
+  footer .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+  footer .marke-f { font-weight: 700; font-size: 1.05rem; margin: 0; }
+  footer .hinweis { font-size: 0.85rem; opacity: 0.92; margin: 0; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <span class="marke">Mein Werdegang</span>
+    <nav class="topnav">
+      <a href="#werdegang">Werdegang</a>
+      <a href="#formula-student">Formula Student</a>
+      <a href="#netzwerk">Netzwerk</a>
+      <a href="#werte">Was mich antreibt</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="speedlines" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="wrap">
+    <p class="eyebrow">Logistik im Blut. Benzin im Herzen.</p>
+    <h1>Mein Weg im<br><span class="rot">Motorsport</span></h1>
+    <p class="intro">
+      Motorsport-Fan, seit ich zwölf bin. Seit 2019 bei Deutsche Post DHL, fast
+      drei Jahre im Formula Student Team greenBEAR. Zwei Welten, ein gemeinsamer Nenner:
+      <span class="marker">Geschwindigkeit, Präzision und Teamarbeit.</span>
+    </p>
+    <div class="cta-reihe">
+      <a class="btn btn-rot" href="#werdegang">Meine Stationen</a>
+      <a class="btn btn-gelb" href="#formula-student">Formula Student</a>
+    </div>
+  </div>
+</section>
+
+<div class="laufband" aria-hidden="true"></div>
+
+<section id="werdegang">
+  <div class="wrap">
+    <h2 class="s-titel">Stationen</h2>
+    <p class="s-sub">Mein Werdegang zwischen Logistik und Rennstrecke.</p>
+
+    <article class="station">
+      <div class="zeit">Seit 2011</div>
+      <div>
+        <h3>Motorsport im Blut</h3>
+        <p class="rolle">Vom Fan zur Leidenschaft</p>
+        <p class="text">
+          Seit meinem zwölften Lebensjahr verfolge ich die Formel 1 – keine Saison
+          ohne mich. Privat hat es mich immer wieder an die Strecke gezogen: zu
+          Rallye-Serien und zu DTM-Rennen. Aus dem Zuschauen wurde früh der Wunsch,
+          selbst Teil des Motorsports zu werden.
+        </p>
+        <ul class="tags">
+          <li>Formel 1</li>
+          <li>Rallye</li>
+          <li>DTM</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="station">
+      <div class="zeit">Seit 2019</div>
+      <div>
+        <h3>Deutsche Post DHL</h3>
+        <p class="rolle">Logistik &amp; Präzision im Alltag</p>
+        <p class="text">
+          Seit 2019 arbeite ich bei Deutsche Post DHL. Hier habe ich gelernt, was
+          Zuverlässigkeit, Termindruck und Teamarbeit wirklich bedeuten – jeden Tag
+          zählt jede Minute. Genau diese Eigenschaften sind es, die mich auch im
+          Motorsport antreiben.
+        </p>
+        <ul class="tags">
+          <li>Zuverlässigkeit</li>
+          <li>Teamarbeit</li>
+          <li>Arbeiten unter Zeitdruck</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="station">
+      <div class="zeit">09/2023 – 06/2026</div>
+      <div>
+        <h3>Formula Student Team greenBEAR – HTW Berlin</h3>
+        <p class="rolle">Leitung Logistik &amp; Events · Camp Site Manager</p>
+        <p class="text">
+          Im September 2023 bin ich dem Formula Student Team greenBEAR beigetreten
+          und habe die Leitung der Logistik übernommen, später zusätzlich die
+          Events. Als Camp Site Manager habe ich unser Team auf drei Wettbewerben
+          betreut – in den Niederlanden, in Polen und in Schwedt (Deutschland).
+          Von der Materialbeschaffung über den Transport unseres selbst gebauten
+          elektrischen Rennwagens bis zum Ablauf vor Ort: Hier habe ich Motorsport
+          von Grund auf gelebt.
+        </p>
+        <ul class="tags">
+          <li>Leitung Logistik</li>
+          <li>Eventorganisation</li>
+          <li>Camp Site Manager</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="fs" id="formula-student">
+  <div class="wrap">
+    <h2 class="s-titel">Formula Student</h2>
+    <p class="s-sub">
+      Formula Student ist der größte internationale Konstruktionswettbewerb für
+      Studierende: Teams entwickeln und bauen jedes Jahr einen eigenen Rennwagen
+      und treten damit auf echten Rennstrecken gegeneinander an.
+    </p>
+    <div class="fs-grid">
+      <div class="fs-card">
+        <p class="zahl">3</p>
+        <p class="label">Jahre im Team</p>
+        <p class="text">Von September 2023 bis Juni 2026 – erst Leitung Logistik, später zusätzlich die Events.</p>
+      </div>
+      <div class="fs-card">
+        <p class="zahl">3</p>
+        <p class="label">Events als Camp Site Manager</p>
+        <p class="text">Niederlande, Polen und Schwedt (Deutschland) – Verantwortung für das Team-Camp vor Ort.</p>
+      </div>
+      <div class="fs-card">
+        <p class="zahl">2×</p>
+        <p class="label">Track Marshal</p>
+        <p class="text">Im Einsatz an der Strecke beim Formel-E-Rennen in Berlin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="netzwerk">
+  <div class="wrap">
+    <h2 class="s-titel">Mein Motorsport-Netzwerk</h2>
+    <p class="s-sub">
+      Aus der Leidenschaft sind echte Begegnungen geworden – im Fahrerlager der
+      Formel 1, an der Strecke der Formel E und beim Sponsoring für unser eigenes Team.
+    </p>
+    <div class="netz-grid">
+      <div class="netz-card">
+        <div class="foto"><img src="https://raw.githubusercontent.com/Fako7/motorsport-werdegang/main/img/paddock.jpg" alt="Im DHL Motorhome im Formel-1-Paddock in Spielberg – Empfangstresen in Postgelb mit DHL-Logo und Leuchtschrift „Frontrunner in Low Carbon Logistics Operations“"></div>
+        <div class="inhalt">
+          <p class="serie">Formel 1 · Spielberg 2025</p>
+          <h3>Zu Gast im Paddock</h3>
+          <p class="text">
+            Beim Formel-1-Rennen in Spielberg durfte ich das Paddock bei einer
+            geführten Tour erleben – möglich gemacht von Christine
+            Schröder-Schönberg und dem DHL-Logistikteam, das Autos, Teile und
+            Equipment pünktlich an die Strecke bringt. Höhepunkte: das brandneue
+            DHL Motorhome und die Biomethan-Trucks als Zeichen nachhaltiger
+            Logistik. Kurz darauf war ich zurück am Red Bull Ring – diesmal
+            nicht als Besucher, sondern als Teammitglied von greenBEAR im
+            Wettbewerb mit unserem selbst gebauten elektrischen Rennwagen.
+          </p>
+        </div>
+      </div>
+      <div class="netz-card">
+        <div class="foto"><img src="https://raw.githubusercontent.com/Fako7/motorsport-werdegang/main/img/postcast.jpg" alt="Fabian Kozma im Interview mit dem DHL PostCast beim 2025 Hankook Berlin E-Prix"></div>
+        <div class="inhalt">
+          <p class="serie">Formel E · Berlin, Tempelhofer Feld</p>
+          <h3>Mittendrin in Berlin</h3>
+          <p class="text">
+            Bei der Formel E auf dem Tempelhofer Feld durfte ich Alina Wicht,
+            bei DHL verantwortlich für die Formel E, und ihr Team kennenlernen –
+            und mir über Kontakte wie Federico Cavani ein kleines Netzwerk im
+            Fahrerlager aufbauen. Auf eigene Bewerbung hin stand ich zudem
+            zweimal selbst als Track Marshal an der Strecke. Als Gast im
+            offiziellen DHL PostCast (Juli 2025) habe ich über unser
+            E-Rennwagen-Projekt bei greenBEAR gesprochen – und den Bogen zu den
+            sechs E-Lkw gespannt, mit denen unsere Abteilung Verkehr nachhaltige
+            Logistik in die Praxis bringt.
+          </p>
+        </div>
+      </div>
+      <div class="netz-card">
+        <div class="foto"><img src="https://raw.githubusercontent.com/Fako7/motorsport-werdegang/main/img/greenbear.jpg" alt="Der elektrische greenBEAR-Rennwagen E19 der HTW Berlin mit DHL-Sponsoring auf dem Heckflügel"></div>
+        <div class="inhalt">
+          <p class="serie">Formula Student</p>
+          <h3>Sponsoring für greenBEAR</h3>
+          <p class="text">
+            Über den Kontakt zu Dirk Behrend-Uçak habe ich das Sponsoring für
+            unser Formula Student Team vorangetrieben – das Ergebnis fährt heute
+            sichtbar auf unserem Rennwagen mit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="werte">
+  <div class="wrap">
+    <h2 class="s-titel">Was mich antreibt</h2>
+    <p class="s-sub">Vier Dinge, die ich aus Logistik und Motorsport mitnehme.</p>
+    <div class="werte-grid">
+      <div class="wert">
+        <h3>Racing-Mindset</h3>
+        <p>Im Motorsport entscheiden Details über Sieg oder Niederlage. Diese Denkweise nehme ich in jedes Projekt mit.</p>
+      </div>
+      <div class="wert">
+        <h3>Teamgeist</h3>
+        <p>Ob im Formula Student Team oder bei DHL – große Ziele erreicht man nur gemeinsam.</p>
+      </div>
+      <div class="wert">
+        <h3>Präzision unter Druck</h3>
+        <p>Boxenstopp oder Paketlogistik: Wenn es schnell gehen muss, zählt jeder Handgriff.</p>
+      </div>
+      <div class="wert">
+        <h3>Hands-on-Mentalität</h3>
+        <p>Ich packe an – vom Schrauben am Rennwagen bis zur Lösung im Tagesgeschäft.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="laufband" aria-hidden="true"></div>
+
+<section class="connect">
+  <div class="wrap">
+    <h2 class="connect-titel">Smart Connect</h2>
+    <p class="connect-sub">Weitere Artikel und Stories rund um Motorsport und nachhaltige Logistik bei DHL.</p>
+    <div class="connect-links">
+      <a href="https://connect.dpdhl.com/content/news/article/68931f259d90f93be915a843" class="connect-link" target="_blank" rel="noopener">
+        <div class="connect-link-label">DHL Smart Connect</div>
+        <p class="connect-link-text">Formula Student im Fokus</p>
+        <div class="connect-link-hint">→ Zum Artikel</div>
+      </a>
+      <a href="https://connect.dpdhl.com/content/news/article/6888da5d1a7a47254ec1888f" class="connect-link" target="_blank" rel="noopener">
+        <div class="connect-link-label">DHL Smart Connect</div>
+        <p class="connect-link-text">E-Mobilität in der Logistik</p>
+        <div class="connect-link-hint">→ Zum Artikel</div>
+      </a>
+      <a href="https://connect.dpdhl.com/content/news/article/687247e966afa1272acb7a0f" class="connect-link" target="_blank" rel="noopener">
+        <div class="connect-link-label">DHL Smart Connect</div>
+        <p class="connect-link-text">Nachhaltige Rennlogistik</p>
+        <div class="connect-link-hint">→ Zum Artikel</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="marke-f">Mein Weg im Motorsport</p>
+    <p class="hinweis">Persönliche Website · Kein offizielles Angebot der DHL Group</p>
+  </div>
+</footer>
+
+</body>
+</html>
